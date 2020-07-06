@@ -3,6 +3,8 @@
 namespace Hborras\TwitterAdsSDK\TwitterAds\Campaign;
 
 use Hborras\TwitterAdsSDK\TwitterAds\Account;
+use Hborras\TwitterAdsSDK\TwitterAds\Analytics;
+use Hborras\TwitterAdsSDK\TwitterAds\Fields\PromotedTweetFields;
 use Hborras\TwitterAdsSDK\TwitterAds\Resource;
 use Hborras\TwitterAdsSDK\TwitterAdsException;
 use Hborras\TwitterAdsSDK\TwitterAds\Errors\NotFound;
@@ -18,11 +20,30 @@ use Hborras\TwitterAdsSDK\TwitterAds\Errors\ServiceUnavailable;
  * Class Tweet
  * @package Hborras\TwitterAdsSDK\TwitterAds\Campaign
  */
-class Tweet
+class Tweet extends Analytics
 {
     const TWEET_PREVIEW    = 'accounts/{account_id}/tweet/preview';
     const TWEET_ID_PREVIEW = 'accounts/{account_id}/tweet/preview/{id}';
     const TWEET_CREATE     = 'accounts/{account_id}/tweet';
+    const RESOURCE_COLLECTION = 'accounts/{account_id}/tweets';
+    const RESOURCE            = 'accounts/{account_id}/tweets/{id}';
+
+    const ENTITY = 'TWEET';
+
+    /** Read Only */
+    protected $id;
+    protected $created_at;
+    protected $updated_at;
+    protected $deleted;
+    protected $tweet_type;
+
+    protected $properties = [
+        TweetFields::ID,
+        TweetFields::CARD_URI,
+    ];
+
+    /** Writable */
+    protected $card_uri;
 
     /**
      * Returns an HTML preview of a tweet, either new or existing.

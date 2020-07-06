@@ -3,6 +3,10 @@
 namespace Hborras\TwitterAdsSDK\TwitterAds;
 
 use DateTimeImmutable;
+use Hborras\TwitterAdsSDK\TwitterAds\Campaign\Tweet;
+use Hborras\TwitterAdsSDK\TwitterAds\Creative\PromotedTweet;
+use Hborras\TwitterAdsSDK\TwitterAds\Errors\BadRequest;
+use Hborras\TwitterAdsSDK\TwitterAds\Fields\LineItemFields;
 use Hborras\TwitterAdsSDK\TwitterAdsException;
 use Hborras\TwitterAdsSDK\TwitterAds\Analytics\Job;
 use Hborras\TwitterAdsSDK\TwitterAds\Creative\Video;
@@ -164,7 +168,6 @@ class Account extends Analytics
     public function getCampaigns($id = '', $params = [])
     {
         $campaignClass = new Campaign();
-
         return $campaignClass->loadResource($id, $params);
     }
 
@@ -187,8 +190,49 @@ class Account extends Analytics
     public function getLineItems($id = '', $params = [])
     {
         $lineItemsClass = new LineItem();
-
         return $lineItemsClass->loadResource($id, $params);
+    }
+
+    /**
+     * Returns a collection of promoted tweets available to the current account.
+     *
+     * @param string $id
+     * @param array $params
+     * @return PromotedTweet|Cursor
+     * @throws BadRequest
+     * @throws Errors\Forbidden
+     * @throws Errors\NotAuthorized
+     * @throws Errors\NotFound
+     * @throws Errors\RateLimit
+     * @throws Errors\ServerError
+     * @throws Errors\ServiceUnavailable
+     * @throws TwitterAdsException
+     */
+    public function getPromotedTweets($id = '', $params = [])
+    {
+        $promotedTweetClass = new PromotedTweet();
+        return $promotedTweetClass->loadResource($id, $params);
+    }
+
+    /**
+     * Returns a collection of tweets available to the current account.
+     *
+     * @param string $id
+     * @param array $params
+     * @return PromotedTweet|Cursor
+     * @throws BadRequest
+     * @throws Errors\Forbidden
+     * @throws Errors\NotAuthorized
+     * @throws Errors\NotFound
+     * @throws Errors\RateLimit
+     * @throws Errors\ServerError
+     * @throws Errors\ServiceUnavailable
+     * @throws TwitterAdsException
+     */
+    public function getTweets($id = '', $params = [])
+    {
+        $promotedTweetClass = new Tweet();
+        return $promotedTweetClass->loadResource($id, $params);
     }
 
     /**
