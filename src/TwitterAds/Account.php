@@ -5,6 +5,7 @@ namespace Hborras\TwitterAdsSDK\TwitterAds;
 use DateTimeImmutable;
 use Hborras\TwitterAdsSDK\TwitterAds\Campaign\Tweet;
 use Hborras\TwitterAdsSDK\TwitterAds\Creative\PromotedTweet;
+use Hborras\TwitterAdsSDK\TwitterAds\Creative\WebsiteCard;
 use Hborras\TwitterAdsSDK\TwitterAds\Errors\BadRequest;
 use Hborras\TwitterAdsSDK\TwitterAds\Fields\LineItemFields;
 use Hborras\TwitterAdsSDK\TwitterAdsException;
@@ -219,7 +220,7 @@ class Account extends Analytics
      *
      * @param string $id
      * @param array $params
-     * @return PromotedTweet|Cursor
+     * @return Tweet|Cursor
      * @throws BadRequest
      * @throws Errors\Forbidden
      * @throws Errors\NotAuthorized
@@ -231,8 +232,29 @@ class Account extends Analytics
      */
     public function getTweets($id = '', $params = [])
     {
-        $promotedTweetClass = new Tweet();
-        return $promotedTweetClass->loadResource($id, $params);
+        $tweetClass = new Tweet();
+        return $tweetClass->loadResource($id, $params);
+    }
+
+    /**
+     * Returns a collection of website cards available to the current account.
+     *
+     * @param string $id
+     * @param array $params
+     * @return WebsiteCard|Cursor
+     * @throws BadRequest
+     * @throws Errors\Forbidden
+     * @throws Errors\NotAuthorized
+     * @throws Errors\NotFound
+     * @throws Errors\RateLimit
+     * @throws Errors\ServerError
+     * @throws Errors\ServiceUnavailable
+     * @throws TwitterAdsException
+     */
+    public function getWebsiteCards($id = '', $params = [])
+    {
+        $websiteCardClass = new WebsiteCard();
+        return $websiteCardClass->loadResource($id, $params);
     }
 
     /**

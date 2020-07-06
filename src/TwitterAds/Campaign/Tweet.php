@@ -20,7 +20,7 @@ use Hborras\TwitterAdsSDK\TwitterAds\Errors\ServiceUnavailable;
  * Class Tweet
  * @package Hborras\TwitterAdsSDK\TwitterAds\Campaign
  */
-class Tweet extends Analytics
+class Tweet extends Resource
 {
     const TWEET_PREVIEW    = 'accounts/{account_id}/tweet/preview';
     const TWEET_ID_PREVIEW = 'accounts/{account_id}/tweet/preview/{id}';
@@ -106,5 +106,13 @@ class Tweet extends Analytics
         $response = $account->getTwitterAds()->post($resource, $params);
 
         return $response->getBody()->data;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 }
