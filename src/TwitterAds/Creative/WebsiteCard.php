@@ -23,6 +23,7 @@ class WebsiteCard extends Resource
 
     protected $properties = [
         WebsiteCardFields::ID,
+        WebsiteCardFields::CARD_URI,
         WebsiteCardFields::NAME,
         WebsiteCardFields::WEBSITE_TITLE,
         WebsiteCardFields::WEBSITE_URL,
