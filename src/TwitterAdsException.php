@@ -21,6 +21,7 @@ class TwitterAdsException extends Exception
 
     public function __construct($message, $code = 500, Exception $previous = null, $errors = [])
     {
+        $message = $message . ' '.json_encode($errors, JSON_UNESCAPED_SLASHES);
         parent::__construct($message, $code, $previous);
         $this->errors = $errors;
     }
