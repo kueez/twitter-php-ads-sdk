@@ -29,6 +29,7 @@ class Campaign extends Analytics
     protected $currency;
 
     protected $properties = [
+        CampaignFields::ID,
         CampaignFields::NAME,
         CampaignFields::FUNDING_INSTRUMENT_ID,
         CampaignFields::START_TIME,

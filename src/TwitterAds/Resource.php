@@ -293,7 +293,11 @@ abstract class Resource implements Arrayable
      */
     public function getProperties()
     {
-        return $this->properties;
+        return array_merge($this->properties, [
+            'created_at',
+            'updated_at',
+            'deleted'
+        ]);
     }
 
 

@@ -40,10 +40,15 @@ class Tweet extends Resource
     protected $properties = [
         TweetFields::ID,
         TweetFields::CARD_URI,
+        TweetFields::TWEET_TYPE,
+        TweetFields::FULL_TEXT,
+        TweetFields::LANG
     ];
 
     /** Writable */
     protected $card_uri;
+    protected $full_text;
+    protected $lang;
 
     /**
      * Returns an HTML preview of a tweet, either new or existing.

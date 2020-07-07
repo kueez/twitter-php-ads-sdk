@@ -31,6 +31,7 @@ class LineItem extends Analytics
     protected $currency;
 
     protected $properties = [
+        LineItemFields::ID,
         LineItemFields::CAMPAIGN_ID,
         LineItemFields::BID_AMOUNT_LOCAL_MICRO,
         LineItemFields::NAME,

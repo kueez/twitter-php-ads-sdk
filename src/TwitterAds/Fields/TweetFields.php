@@ -16,4 +16,5 @@ class TweetFields
 
     const TWEET_IDS                     = 'tweet_ids';
     const TWEET_TYPE                    = 'tweet_type';
+    const LANG                          = 'lang';
 }

@@ -22,10 +22,14 @@ class WebsiteCard extends Resource
     protected $deleted;
 
     protected $properties = [
+        WebsiteCardFields::ID,
         WebsiteCardFields::NAME,
         WebsiteCardFields::WEBSITE_TITLE,
         WebsiteCardFields::WEBSITE_URL,
         WebsiteCardFields::IMAGE_MEDIA_ID,
+        WebsiteCardFields::MEDIA_KEY,
+        WebsiteCardFields::MEDIA_URL,
+        WebsiteCardFields::CARD_TYPE,
     ];
 
     /** Writable */
@@ -33,6 +37,9 @@ class WebsiteCard extends Resource
     protected $website_title;
     protected $website_url;
     protected $image_media_id;
+    protected $media_key;
+    protected $media_url;
+    protected $card_type;
 
     /**
      * @return mixed

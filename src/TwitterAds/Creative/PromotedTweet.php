@@ -27,9 +27,11 @@ class PromotedTweet extends Analytics
     protected $deleted;
 
     protected $properties = [
+        PromotedTweetFields::ID,
         PromotedTweetFields::TWEET_ID,
         PromotedTweetFields::LINE_ITEM_ID,
         PromotedTweetFields::ENTITY_STATUS,
+        PromotedTweetFields::APPROVAL_STATUS,
     ];
 
     /** Writable */

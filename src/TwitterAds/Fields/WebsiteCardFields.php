@@ -17,4 +17,7 @@ class WebsiteCardFields
     const WEBSITE_URL        = 'website_url';
     const IMAGE_MEDIA_ID     = 'image_media_id';
     const WITH_TOTAL_COUNT   = 'with_total_count';
+    const MEDIA_URL          = 'media_url';
+    const MEDIA_KEY          = 'media_key';
+    const CARD_TYPE          = 'card_type';
 }
