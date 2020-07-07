@@ -261,7 +261,6 @@ class Account extends Analytics
     /**
      * Returns a collection of active entities available to the current account.
      *
-     * @param string $id
      * @param array $params
      * @return ActiveEntity|Cursor
      * @throws BadRequest
@@ -273,10 +272,10 @@ class Account extends Analytics
      * @throws Errors\ServiceUnavailable
      * @throws TwitterAdsException
      */
-    public function getActiveEntities($id = '', $params = [])
+    public function getActiveEntities($params = [])
     {
         $activeEntityClass = new ActiveEntity();
-        return $activeEntityClass->loadResource($id, $params);
+        return $activeEntityClass->loadResource('', $params);
     }
 
     /**
