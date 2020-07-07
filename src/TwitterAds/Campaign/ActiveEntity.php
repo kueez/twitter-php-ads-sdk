@@ -11,8 +11,8 @@ use Hborras\TwitterAdsSDK\TwitterAds\Resource;
  */
 class ActiveEntity extends Resource
 {
-    const RESOURCE_COLLECTION = 'accounts/{active_entities}/active_entities';
-    const RESOURCE            = 'accounts/{active_entities}/active_entities/{id}';
+    const RESOURCE_COLLECTION = 'accounts/{account_id}/active_entities';
+    const RESOURCE            = 'accounts/{account_id}/active_entities/{id}';
 
     /** Read Only */
     protected $entity_id;
