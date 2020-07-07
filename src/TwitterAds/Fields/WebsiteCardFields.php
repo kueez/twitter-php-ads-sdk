@@ -20,4 +20,5 @@ class WebsiteCardFields
     const MEDIA_URL          = 'media_url';
     const MEDIA_KEY          = 'media_key';
     const CARD_TYPE          = 'card_type';
+    const CARD_IDS           = 'card_ids';
 }
