@@ -11,7 +11,7 @@ class ImageAppDownloadCardFields
     const ID                      = 'id';
     const CREATED_AT              = 'created_at';
     const UPDATED_AT              = 'updated_at';
-    const DELETED                 = 'delete';
+    const DELETED                 = 'deleted';
     const NAME                    = 'name';
     const COUNTRY_CODE        = 'country_code';
     const IPHONE_APP_ID           = 'iphone_app_id';

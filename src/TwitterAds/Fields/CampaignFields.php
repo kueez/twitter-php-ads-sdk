@@ -13,7 +13,7 @@ class CampaignFields extends Fields
     const SERVABLE                        = 'servable';
     const CREATED_AT                      = 'created_at';
     const UPDATED_AT                      = 'updated_at';
-    const DELETED                         = 'delete';
+    const DELETED                         = 'deleted';
     const NAME                            = 'name';
     const FUNDING_INSTRUMENT_ID           = 'funding_instrument_id';
     const START_TIME                      = 'start_time';

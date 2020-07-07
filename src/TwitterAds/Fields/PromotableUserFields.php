@@ -13,6 +13,6 @@ class PromotableUserFields
     const USER_ID              = 'user_id';
     const CREATED_AT           = 'created_at';
     const UPDATED_AT           = 'updated_at';
-    const DELETED              = 'delete';
+    const DELETED              = 'deleted';
     const WITH_TOTAL_COUNT     = 'with_total_count';
 }
