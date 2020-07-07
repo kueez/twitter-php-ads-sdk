@@ -36,7 +36,7 @@ class Analytics extends Resource
      */
     public function stats($metricGroups, $params = [], $async = false)
     {
-        $params[AnalyticsFields::ENTITY] = self::ENTITY;
+        $params[AnalyticsFields::ENTITY] = static::ENTITY;
         return $this->allStats([$this->getId()], $metricGroups, $params, $async);
     }
 
@@ -57,7 +57,7 @@ class Analytics extends Resource
      */
     public function allStatsAsync($ids, $metricGroups, $params = [], $maxTries = 6)
     {
-        $params[AnalyticsFields::ENTITY] = self::ENTITY;
+        $params[AnalyticsFields::ENTITY] = static::ENTITY;
         $stats = $this->allStats($ids, $metricGroups, $params, true);
         $request = $stats->read();
         $runs = 0;
