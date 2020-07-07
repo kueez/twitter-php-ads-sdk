@@ -11,15 +11,5 @@ use Hborras\TwitterAdsSDK\TwitterAdsException;
  */
 class NotAuthorized extends TwitterAdsException
 {
-    /**
-     * NotAuthorized constructor.
-     * @param $message
-     * @param $code
-     * @param Exception|null $previous
-     * @param $errors
-     */
-    public function __construct($message, $code, Exception $previous = null, $errors)
-    {
-        parent::__construct($message, $code, null, $errors);
-    }
+
 }

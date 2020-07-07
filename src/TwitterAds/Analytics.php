@@ -36,7 +36,53 @@ class Analytics extends Resource
      */
     public function stats($metricGroups, $params = [], $async = false)
     {
-        return $this->all_stats([$this->getId()], $metricGroups, $params, $async);
+        $params[AnalyticsFields::ENTITY] = self::ENTITY;
+        return $this->allStats([$this->getId()], $metricGroups, $params, $async);
+    }
+
+    /**
+     * @param $ids
+     * @param $metricGroups
+     * @param array $params
+     * @param int $maxTries
+     * @return void
+     * @throws BadRequest
+     * @throws Errors\Forbidden
+     * @throws Errors\NotAuthorized
+     * @throws Errors\NotFound
+     * @throws Errors\RateLimit
+     * @throws Errors\ServerError
+     * @throws Errors\ServiceUnavailable
+     * @throws TwitterAdsException
+     */
+    public function allStatsAsync($ids, $metricGroups, $params = [], $maxTries = 6)
+    {
+        $params[AnalyticsFields::ENTITY] = self::ENTITY;
+        $stats = $this->allStats($ids, $metricGroups, $params, true);
+        $request = $stats->read();
+        $runs = 0;
+
+        while ($request->getStatus() === JobFields::PROCESSING) {
+            if ($runs === $maxTries) {
+                throw new TwitterAdsException('Too many tries.');
+            } else if ($runs === 1) {
+                usleep(500000);
+            } else {
+                usleep(1500000);
+            }
+
+            $stats->read();
+            $runs++;
+        }
+
+        if ($request->getStatus() !== JobFields::SUCCESS) {
+            throw new TwitterAdsException('Invalid job.');
+        }
+
+        $url = $request->getUrl();
+        $data = json_decode(file_get_contents('compress.zlib://'.$url), true);
+
+        return $data;
     }
 
 
@@ -55,7 +101,7 @@ class Analytics extends Resource
      * @throws Errors\ServiceUnavailable
      * @throws TwitterAdsException
      */
-    public function all_stats($ids, $metricGroups, $params = [], $async = false)
+    public function allStats($ids, $metricGroups, $params = [], $async = false)
     {
         $endTime = isset($params[AnalyticsFields::END_TIME]) ? $params[AnalyticsFields::END_TIME] : new DateTime('now');
         $endTime->setTime($endTime->format('H'), 0, 0);

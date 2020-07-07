@@ -92,7 +92,7 @@ class Campaign extends Analytics
      */
     public function stats($metricGroups, $params = [], $async = false)
     {
-        $params[AnalyticsFields::ENTITY] = AnalyticsFields::CAMPAIGN;
+        $params[AnalyticsFields::ENTITY] = self::ENTITY;
         return parent::stats($metricGroups, $params, $async);
     }
 
