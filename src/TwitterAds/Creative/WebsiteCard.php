@@ -31,6 +31,9 @@ class WebsiteCard extends Resource
         WebsiteCardFields::MEDIA_KEY,
         WebsiteCardFields::MEDIA_URL,
         WebsiteCardFields::CARD_TYPE,
+        WebsiteCardFields::CREATED_AT,
+        WebsiteCardFields::UPDATED_AT,
+        WebsiteCardFields::DELETED,
     ];
 
     /** Writable */

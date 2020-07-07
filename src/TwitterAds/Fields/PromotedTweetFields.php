@@ -9,6 +9,8 @@ namespace Hborras\TwitterAdsSDK\TwitterAds\Fields;
 class PromotedTweetFields extends Fields
 {
     const ID                 = 'id';
+    const CREATED_AT         = 'created_at';
+    const UPDATED_AT         = 'updated_at';
     const DELETED            = 'deleted';
     const APPROVAL_STATUS    = 'approval_status';
     const TWEET_ID           = 'tweet_id';

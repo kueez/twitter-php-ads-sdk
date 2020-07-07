@@ -51,7 +51,10 @@ class LineItem extends Analytics
         LineItemFields::CHARGE_BY,
         LineItemFields::ADVERTISER_DOMAIN,
         LineItemFields::ADVERTISER_USER_ID,
-        LineItemFields::CATEGORIES
+        LineItemFields::CATEGORIES,
+        LineItemFields::CREATED_AT,
+        LineItemFields::UPDATED_AT,
+        LineItemFields::DELETED,
     ];
 
     /** Writable */

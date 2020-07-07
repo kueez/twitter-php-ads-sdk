@@ -40,6 +40,9 @@ class Campaign extends Analytics
         CampaignFields::TOTAL_BUDGET_AMOUNT_LOCAL_MICRO,
         CampaignFields::DURATION_IN_DAYS,
         CampaignFields::FREQUENCY_CAP,
+        CampaignFields::CREATED_AT,
+        CampaignFields::UPDATED_AT,
+        CampaignFields::DELETED,
     ];
 
     /** Writable */

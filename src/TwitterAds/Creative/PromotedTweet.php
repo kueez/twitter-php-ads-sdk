@@ -32,6 +32,9 @@ class PromotedTweet extends Analytics
         PromotedTweetFields::LINE_ITEM_ID,
         PromotedTweetFields::ENTITY_STATUS,
         PromotedTweetFields::APPROVAL_STATUS,
+        PromotedTweetFields::CREATED_AT,
+        PromotedTweetFields::UPDATED_AT,
+        PromotedTweetFields::DELETED,
     ];
 
     /** Writable */

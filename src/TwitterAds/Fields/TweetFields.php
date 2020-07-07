@@ -13,6 +13,9 @@ class TweetFields
     const TEXT                          = 'text';
     const FULL_TEXT                     = 'full_text';
     const CARD_URI                      = 'card_uri';
+    const CREATED_AT                    = 'created_at';
+    const UPDATED_AT                    = 'updated_at';
+    const DELETED                       = 'deleted';
 
     const TWEET_IDS                     = 'tweet_ids';
     const TWEET_TYPE                    = 'tweet_type';

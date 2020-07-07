@@ -42,7 +42,10 @@ class Tweet extends Resource
         TweetFields::CARD_URI,
         TweetFields::TWEET_TYPE,
         TweetFields::FULL_TEXT,
-        TweetFields::LANG
+        TweetFields::LANG,
+        TweetFields::CREATED_AT,
+        TweetFields::UPDATED_AT,
+        TweetFields::DELETED,
     ];
 
     /** Writable */
