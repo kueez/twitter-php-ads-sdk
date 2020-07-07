@@ -45,7 +45,7 @@ class Analytics extends Resource
      * @param $metricGroups
      * @param array $params
      * @param int $maxTries
-     * @return void
+     * @return mixed
      * @throws BadRequest
      * @throws Errors\Forbidden
      * @throws Errors\NotAuthorized
