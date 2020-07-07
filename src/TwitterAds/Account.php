@@ -3,6 +3,7 @@
 namespace Hborras\TwitterAdsSDK\TwitterAds;
 
 use DateTimeImmutable;
+use Hborras\TwitterAdsSDK\TwitterAds\Campaign\ActiveEntity;
 use Hborras\TwitterAdsSDK\TwitterAds\Campaign\Tweet;
 use Hborras\TwitterAdsSDK\TwitterAds\Creative\PromotedTweet;
 use Hborras\TwitterAdsSDK\TwitterAds\Creative\WebsiteCard;
@@ -255,6 +256,27 @@ class Account extends Analytics
     {
         $websiteCardClass = new WebsiteCard();
         return $websiteCardClass->loadResource($id, $params);
+    }
+
+    /**
+     * Returns a collection of active entities available to the current account.
+     *
+     * @param string $id
+     * @param array $params
+     * @return ActiveEntity|Cursor
+     * @throws BadRequest
+     * @throws Errors\Forbidden
+     * @throws Errors\NotAuthorized
+     * @throws Errors\NotFound
+     * @throws Errors\RateLimit
+     * @throws Errors\ServerError
+     * @throws Errors\ServiceUnavailable
+     * @throws TwitterAdsException
+     */
+    public function getActiveEntities($id = '', $params = [])
+    {
+        $activeEntityClass = new ActiveEntity();
+        return $activeEntityClass->loadResource($id, $params);
     }
 
     /**
