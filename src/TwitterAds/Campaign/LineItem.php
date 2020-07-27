@@ -64,7 +64,8 @@ class LineItem extends Analytics
         LineItemFields::BID_UNIT,
         LineItemFields::CHARGE_BY,
         LineItemFields::ADVERTISER_DOMAIN,
-        LineItemFields::ADVERTISER_USER_ID
+        LineItemFields::ADVERTISER_USER_ID,
+        LineItemFields::AUTOMATICALLY_SELECT_BID
     ];
 
     /** Writable */
