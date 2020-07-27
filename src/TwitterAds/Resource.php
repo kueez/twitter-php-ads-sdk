@@ -195,9 +195,12 @@ abstract class Resource implements Arrayable
         $readOnlProps = $this->getReadOnlyProperties();
 
         foreach ($this->getProperties() as $property) {
-            if (in_array($property, $readOnlProps)) {
-                continue;
+            if ($removeReadOnly) {
+                if (in_array($property, $readOnlProps)) {
+                    continue;
+                }
             }
+
 
             if (is_null($this->$property)) {
                 continue;
