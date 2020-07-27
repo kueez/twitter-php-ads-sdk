@@ -26,6 +26,7 @@ abstract class Resource implements Arrayable
     const RESOURCE_REPLACE = '{account_id}';
 
     protected $properties = [];
+    protected $readOnlyProperties = [];
 
     /** @var  TwitterAds $twitterAds */
     private $twitterAds;
@@ -185,11 +186,19 @@ abstract class Resource implements Arrayable
     /**
      * Generates a Hash of property values for the current object. This helper
      * handles all necessary type coercions as it generates its output.
+     * @param bool $removeReadOnly
+     * @return array
      */
-    public function toParams()
+    public function toParams($removeReadOnly = false)
     {
         $params = [];
+        $readOnlProps = $this->getReadOnlyProperties();
+
         foreach ($this->getProperties() as $property) {
+            if (in_array($property, $readOnlProps)) {
+                continue;
+            }
+
             if (is_null($this->$property)) {
                 continue;
             }
@@ -267,10 +276,10 @@ abstract class Resource implements Arrayable
         if ($this->getId()) {
             $resource = str_replace(static::RESOURCE_REPLACE, $this->getTwitterAds()->getAccountId(), static::RESOURCE);
             $resource = str_replace(static::RESOURCE_ID_REPLACE, $this->getId(), $resource);
-            $response = $this->getTwitterAds()->put($resource, $this->toParams());
+            $response = $this->getTwitterAds()->put($resource, $this->toParams(true));
         } else {
             $resource = str_replace(static::RESOURCE_REPLACE, $this->getTwitterAds()->getAccountId(), static::RESOURCE_COLLECTION);
-            $response = $this->getTwitterAds()->post($resource, $this->toParams());
+            $response = $this->getTwitterAds()->post($resource, $this->toParams(true));
         }
 
         return $this->fromResponse($response->getBody()->data);
@@ -294,6 +303,14 @@ abstract class Resource implements Arrayable
     public function getProperties()
     {
         return $this->properties;
+    }
+
+    /**
+     * @return array
+     */
+    public function getReadOnlyProperties()
+    {
+        return $this->readOnlyProperties;
     }
 
 

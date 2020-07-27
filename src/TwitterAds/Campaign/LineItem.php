@@ -57,6 +57,14 @@ class LineItem extends Analytics
         LineItemFields::DELETED,
     ];
 
+    /**
+     * @var array
+     */
+    protected $readOnlyProperties = [
+        LineItemFields::BID_UNIT,
+        LineItemFields::CHARGE_BY
+    ];
+
     /** Writable */
     protected $campaign_id;
     protected $bid_amount_local_micro;
