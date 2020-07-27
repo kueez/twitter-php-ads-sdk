@@ -62,7 +62,9 @@ class LineItem extends Analytics
      */
     protected $readOnlyProperties = [
         LineItemFields::BID_UNIT,
-        LineItemFields::CHARGE_BY
+        LineItemFields::CHARGE_BY,
+        LineItemFields::ADVERTISER_DOMAIN,
+        LineItemFields::ADVERTISER_USER_ID
     ];
 
     /** Writable */
