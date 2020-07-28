@@ -211,6 +211,10 @@ abstract class Resource implements Arrayable
                 $params[$property] = $this->$property->format('c');
             } elseif (is_array($this->$property)) {
                 $params[$property] = implode(',', $this->$property);
+
+                if (is_null($this->$property) || $this->$property === "") {
+                    continue;
+                }
             } elseif (is_bool($this->$property)) {
                 $params[$property] = $this->$property ? 'true' : 'false';
             } elseif (isset($this->$property->id)){
