@@ -65,10 +65,12 @@ class PromotedTweet extends Analytics
     /**
      * Saves or updates the current object instance depending on the
      * presence of `object->getId()`.
+     * @throws \Exception
      */
     public function save()
     {
-        $params = $this->toParams();
+        $params = $this->toParams(true);
+
         if (isset($params[PromotedTweetFields::TWEET_ID])) {
             $params[PromotedTweetFields::TWEET_IDS] = $params[PromotedTweetFields::TWEET_ID];
             unset($params[PromotedTweetFields::TWEET_ID]);

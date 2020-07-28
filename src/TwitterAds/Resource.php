@@ -27,6 +27,7 @@ abstract class Resource implements Arrayable
 
     protected $properties = [];
     protected $readOnlyProperties = [];
+    protected $removeIfEmptyProperties = [];
 
     /** @var  TwitterAds $twitterAds */
     private $twitterAds;
@@ -172,6 +173,7 @@ abstract class Resource implements Arrayable
         } else {
             $timezone = $this->getTwitterAds()->getAccountTimezone();
         }
+
         foreach (get_object_vars($response) as $key => $value) {
             if (($key == 'created_at' || $key == 'updated_at' || $key == 'start_time' || $key == 'end_time' || $key == 'timezone_switch_at') && !is_null($value)) {
                 $this->$key = $this->toDateTimeImmutable($value, $timezone);
@@ -186,25 +188,25 @@ abstract class Resource implements Arrayable
     /**
      * Generates a Hash of property values for the current object. This helper
      * handles all necessary type coercions as it generates its output.
-     * @param bool $removeReadOnly
+     * @param bool $save
      * @return array
      */
-    public function toParams($removeReadOnly = false)
+    public function toParams($save = false)
     {
         $params = [];
         $readOnlProps = $this->getReadOnlyProperties();
 
         foreach ($this->getProperties() as $property) {
-            if ($removeReadOnly) {
+            if ($save) {
                 if (in_array($property, $readOnlProps)) {
                     continue;
                 }
             }
 
-
-            if (is_null($this->$property)) {
+            if (is_null($this->$property) || $this->$property === "") {
                 continue;
             }
+
             if ($this->$property instanceof DateTimeInterface) {
                 $params[$property] = $this->$property->format('c');
             } elseif (is_array($this->$property)) {
@@ -315,7 +317,6 @@ abstract class Resource implements Arrayable
     {
         return $this->readOnlyProperties;
     }
-
 
     /**
      * @return TwitterAds
