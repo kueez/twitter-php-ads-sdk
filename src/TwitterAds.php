@@ -385,6 +385,26 @@ class TwitterAds extends Config
     }
 
     /**
+     * Private method to upload media (not chunked) to upload.twitter.com.
+     *
+     * @param array $parameters
+     *
+     * @return array|object
+     * @throws BadRequest
+     * @throws Forbidden
+     * @throws NotAuthorized
+     * @throws NotFound
+     * @throws RateLimit
+     * @throws ServerError
+     * @throws ServiceUnavailable
+     * @throws TwitterAdsException
+     */
+    public function uploadMedia($parameters)
+    {
+        return $this->http('POST', self::UPLOAD_HOST, self::UPLOAD_PATH, $parameters);
+    }
+
+    /**
      * Private method to upload media (chunked) to upload.twitter.com.
      *
      * @param string $path
