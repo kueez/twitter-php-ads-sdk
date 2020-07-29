@@ -38,6 +38,14 @@ abstract class Resource implements Arrayable
     abstract public function getId();
 
     /**
+     * @param $id
+     */
+    protected function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
      * Automatically set the account if this class is not an account
      * Resource constructor.
      * @param null $id
@@ -45,7 +53,7 @@ abstract class Resource implements Arrayable
      */
     public function __construct($id = null, TwitterAds $twitterAds = null)
     {
-        $this->id = $id;
+        $this->setId($id);
         $this->twitterAds = static::assureApi($twitterAds);
     }
 

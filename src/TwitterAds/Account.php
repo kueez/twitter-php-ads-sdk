@@ -5,17 +5,17 @@ namespace Hborras\TwitterAdsSDK\TwitterAds;
 use DateTimeImmutable;
 use Hborras\TwitterAdsSDK\TwitterAds\Campaign\ActiveEntity;
 use Hborras\TwitterAdsSDK\TwitterAds\Campaign\Tweet;
+use Hborras\TwitterAdsSDK\TwitterAds\Creative\Media;
 use Hborras\TwitterAdsSDK\TwitterAds\Creative\PromotedTweet;
 use Hborras\TwitterAdsSDK\TwitterAds\Creative\WebsiteCard;
 use Hborras\TwitterAdsSDK\TwitterAds\Errors\BadRequest;
-use Hborras\TwitterAdsSDK\TwitterAds\Fields\LineItemFields;
+use Hborras\TwitterAdsSDK\TwitterAds\Measurement\WebEventTag;
 use Hborras\TwitterAdsSDK\TwitterAdsException;
 use Hborras\TwitterAdsSDK\TwitterAds\Analytics\Job;
-use Hborras\TwitterAdsSDK\TwitterAds\Creative\Video;
+//use Hborras\TwitterAdsSDK\TwitterAds\Creative\Video;
 use Hborras\TwitterAdsSDK\TwitterAds\Campaign\AppList;
 use Hborras\TwitterAdsSDK\TwitterAds\Campaign\Campaign;
 use Hborras\TwitterAdsSDK\TwitterAds\Campaign\LineItem;
-use Hborras\TwitterAdsSDK\TwitterAds\Fields\AccountFields;
 use Hborras\TwitterAdsSDK\TwitterAds\Fields\AnalyticsFields;
 use Hborras\TwitterAdsSDK\TwitterAds\Campaign\PromotableUser;
 use Hborras\TwitterAdsSDK\TwitterAds\Campaign\FundingInstrument;
@@ -259,6 +259,48 @@ class Account extends Analytics
     }
 
     /**
+     * Returns a collection of web event tags available to the current account.
+     *
+     * @param string $id
+     * @param array $params
+     * @return WebEventTag|Cursor
+     * @throws BadRequest
+     * @throws Errors\Forbidden
+     * @throws Errors\NotAuthorized
+     * @throws Errors\NotFound
+     * @throws Errors\RateLimit
+     * @throws Errors\ServerError
+     * @throws Errors\ServiceUnavailable
+     * @throws TwitterAdsException
+     */
+    public function getWebEventTags($id = '', $params = [])
+    {
+        $websiteCardClass = new WebEventTag();
+        return $websiteCardClass->loadResource($id, $params);
+    }
+
+    /**
+     * Returns a collection of media library available to the current account.
+     *
+     * @param string $id
+     * @param array $params
+     * @return WebEventTag|Cursor
+     * @throws BadRequest
+     * @throws Errors\Forbidden
+     * @throws Errors\NotAuthorized
+     * @throws Errors\NotFound
+     * @throws Errors\RateLimit
+     * @throws Errors\ServerError
+     * @throws Errors\ServiceUnavailable
+     * @throws TwitterAdsException
+     */
+    public function getMediaLibrary($id = '', $params = [])
+    {
+        $websiteCardClass = new Media();
+        return $websiteCardClass->loadResource($id, $params);
+    }
+
+    /**
      * Returns a collection of active entities available to the current account.
      *
      * @param array $params
@@ -342,19 +384,19 @@ class Account extends Analytics
         return $tailoredAudienceClass->loadResource('', $params);
     }
 
-    /**
-     * Returns a collection of videos available to the current account.
-     *
-     * @param string $id
-     * @param array $params
-     * @return Cursor|Video
-     */
-    public function getVideos($id = '', $params = [])
-    {
-        $videoClass = new Video();
-
-        return $videoClass->loadResource($id, $params);
-    }
+//    /**
+//     * Returns a collection of videos available to the current account.
+//     *
+//     * @param string $id
+//     * @param array $params
+//     * @return Cursor|Video
+//     */
+//    public function getVideos($id = '', $params = [])
+//    {
+//        $videoClass = new Video();
+//
+//        return $videoClass->loadResource($id, $params);
+//    }
 
     /**
      * @return string
