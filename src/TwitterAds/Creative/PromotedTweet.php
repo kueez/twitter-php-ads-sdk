@@ -76,13 +76,13 @@ class PromotedTweet extends Analytics
             unset($params[PromotedTweetFields::TWEET_ID]);
         }
 
-        if ($this->getId()) {
-            $resource = str_replace(static::RESOURCE_REPLACE, $this->getTwitterAds()->getAccountId(), static::RESOURCE);
-            $resource = str_replace(static::RESOURCE_ID_REPLACE, $this->getId(), $resource);
-            $response = $this->getTwitterAds()->put($resource, $params);
-
-            return $this->fromResponse($response->getBody()->data);
-        }
+//        if ($this->getId()) {
+//            $resource = str_replace(static::RESOURCE_REPLACE, $this->getTwitterAds()->getAccountId(), static::RESOURCE);
+//            $resource = str_replace(static::RESOURCE_ID_REPLACE, $this->getId(), $resource);
+//            $response = $this->getTwitterAds()->post($resource, $params);
+//
+//            return $this->fromResponse($response->getBody()->data);
+//        }
 
         $resource = str_replace(static::RESOURCE_REPLACE, $this->getTwitterAds()->getAccountId(), static::RESOURCE_COLLECTION);
         $response = $this->getTwitterAds()->post($resource, $params);
