@@ -244,4 +244,24 @@ class Media extends Resource
     {
         $this->description = $description;
     }
+
+    /**
+     * @return Media|Resource
+     * @throws TwitterAds\Errors\BadRequest
+     * @throws TwitterAds\Errors\Forbidden
+     * @throws TwitterAds\Errors\NotAuthorized
+     * @throws TwitterAds\Errors\NotFound
+     * @throws TwitterAds\Errors\RateLimit
+     * @throws TwitterAds\Errors\ServerError
+     * @throws TwitterAds\Errors\ServiceUnavailable
+     * @throws \Hborras\TwitterAdsSDK\TwitterAdsException
+     * @throws \Exception
+     */
+    public function create()
+    {
+        $resource = str_replace(static::RESOURCE_REPLACE, $this->getTwitterAds()->getAccountId(), static::RESOURCE_COLLECTION);
+        $response = $this->getTwitterAds()->post($resource, $this->toParams(true));
+
+        return $this->fromResponse($response->getBody()->data);
+    }
 }
