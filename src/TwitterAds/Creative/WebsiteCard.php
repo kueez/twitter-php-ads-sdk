@@ -156,4 +156,20 @@ class WebsiteCard extends Resource
     {
         return $this->deleted;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getMediaKey()
+    {
+        return $this->media_key;
+    }
+
+    /**
+     * @param mixed $media_key
+     */
+    public function setMediaKey($media_key)
+    {
+        $this->media_key = $media_key;
+    }
 }
