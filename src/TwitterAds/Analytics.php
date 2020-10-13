@@ -45,6 +45,7 @@ class Analytics extends Resource
      * @param $metricGroups
      * @param array $params
      * @param int $maxTries
+     * @param int $delay
      * @return mixed
      * @throws BadRequest
      * @throws Errors\Forbidden
@@ -55,7 +56,7 @@ class Analytics extends Resource
      * @throws Errors\ServiceUnavailable
      * @throws TwitterAdsException
      */
-    public function allStatsAsync($ids, $metricGroups, $params = [], $maxTries = 6)
+    public function allStatsAsync($ids, $metricGroups, $params = [], $maxTries = 6, $delay = 1500000)
     {
         $params[AnalyticsFields::ENTITY] = static::ENTITY;
         $stats = $this->allStats($ids, $metricGroups, $params, true);
@@ -68,7 +69,7 @@ class Analytics extends Resource
             } else if ($runs === 1) {
                 usleep(500000);
             } else {
-                usleep(1500000);
+                usleep($delay);
             }
 
             $stats->read();
