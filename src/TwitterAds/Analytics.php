@@ -180,6 +180,6 @@ class Analytics extends Resource
      */
     public function getId()
     {
-        return parent::getId();
+        return $this->id;
     }
 }

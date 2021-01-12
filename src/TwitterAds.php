@@ -21,7 +21,7 @@ use Hborras\TwitterAdsSDK\TwitterAds\Errors\ServiceUnavailable;
  */
 class TwitterAds extends Config
 {
-    const API_VERSION      = '7';
+    const API_VERSION      = '8';
     const API_REST_VERSION = '1.1';
     const API_HOST = 'https://ads-api.twitter.com';
     const API_HOST_SANDBOX = 'https://ads-api-sandbox.twitter.com';
@@ -803,9 +803,14 @@ class TwitterAds extends Config
         $this->account = $account;
     }
 
-    public function getRequestToken($oauth_callback)
+    /**
+     * @param $oauth_callback
+     * @param array $parameters
+     * @return array
+     * @throws TwitterAdsException
+     */
+    public function getRequestToken($oauth_callback, $parameters = [])
     {
-        $parameters = array();
         $parameters['oauth_callback'] = $oauth_callback;
         $request = $this->oAuthRequest($this->requestTokenURL(), 'GET', $parameters);
         return self::parse_parameters($request);
@@ -815,18 +820,20 @@ class TwitterAds extends Config
      * Exchange request token and secret for an access token and
      * secret, to sign API calls.
      *
+     * @param $oauth_token
      * @param $oauth_verifier
+     * @param array $parameters
      * @return array ("oauth_token" => "the-access-token",
      *                "oauth_token_secret" => "the-access-secret",
      * "user_id" => "9436992",
      * "screen_name" => "abraham")
      * @throws TwitterAdsException
      */
-    public function getAccessToken($oauth_verifier)
+    public function getAccessToken($oauth_token, $oauth_verifier, $parameters = [])
     {
-        $parameters = array();
+        $parameters['oauth_token'] = $oauth_token;
         $parameters['oauth_verifier'] = $oauth_verifier;
-        $request = $this->oAuthRequest($this->accessTokenURL(), 'GET', $parameters);
+        $request = $this->oAuthRequest($this->accessTokenURL(), 'POST', $parameters);
         return self::parse_parameters($request);
     }
 
