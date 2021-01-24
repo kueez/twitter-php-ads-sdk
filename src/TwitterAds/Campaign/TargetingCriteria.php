@@ -38,11 +38,13 @@ class TargetingCriteria extends Resource
         TargetingCriteriaFields::TARGETING_VALUE,
         TargetingCriteriaFields::TAILORED_AUDIENCE_EXPANSION,
         TargetingCriteriaFields::TAILORED_AUDIENCE_TYPE,
+        TargetingCriteriaFields::OPERATOR_TYPE,
     ];
 
     protected $line_item_id;
     protected $targeting_type;
     protected $targeting_value;
+    protected $operator_type;
     protected $tailored_audience_expansion;
     protected $tailored_audience_type;
 
@@ -155,6 +157,13 @@ class TargetingCriteria extends Resource
     {
         return $this->targeting_value;
     }
+    /**
+     * @return mixed
+     */
+    public function getOperatorType()
+    {
+        return $this->operator_type;
+    }
 
     /**
      * @return mixed
@@ -202,6 +211,14 @@ class TargetingCriteria extends Resource
     public function setTargetingValue($targeting_value)
     {
         $this->targeting_value = $targeting_value;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function setOperatorType($operator_type)
+    {
+        $this->operator_type = $operator_type;
     }
 
     /**
