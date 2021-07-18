@@ -8,7 +8,6 @@ namespace Hborras\TwitterAdsSDK\TwitterAds\Fields;
  */
 class WebsiteCardFields
 {
-    const ID                 = 'id';
     const NAME               = 'name';
     const CREATED_AT         = 'created_at';
     const UPDATED_AT         = 'updated_at';
@@ -20,6 +19,6 @@ class WebsiteCardFields
     const MEDIA_URL          = 'media_url';
     const MEDIA_KEY          = 'media_key';
     const CARD_TYPE          = 'card_type';
-    const CARD_IDS           = 'card_ids';
+    const CARD_URIS           = 'card_uris';
     const CARD_URI           = 'card_uri';
 }

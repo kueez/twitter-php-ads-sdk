@@ -12,17 +12,16 @@ use Hborras\TwitterAdsSDK\TwitterAds\Fields\WebsiteCardFields;
 class WebsiteCard extends Resource
 {
     const RESOURCE_COLLECTION = 'accounts/{account_id}/cards/website';
-    const RESOURCE            = 'accounts/{account_id}/cards/website/{id}';
+    const RESOURCE            = 'accounts/{account_id}/cards/website/{card_uri}';
+    const RESOURCE_ID_REPLACE = '{card_uri}';
 
     /** Read Only */
-    protected $id;
     protected $card_uri;
     protected $created_at;
     protected $updated_at;
     protected $deleted;
 
     protected $properties = [
-        WebsiteCardFields::ID,
         WebsiteCardFields::CARD_URI,
         WebsiteCardFields::NAME,
         WebsiteCardFields::WEBSITE_TITLE,
@@ -50,7 +49,16 @@ class WebsiteCard extends Resource
      */
     public function getId()
     {
-        return $this->id;
+        return $this->getCardUri();
+    }
+
+
+    /**
+     * @param $id
+     */
+    protected function setId($id)
+    {
+        $this->setCardUri($id);
     }
 
     /**
@@ -131,6 +139,15 @@ class WebsiteCard extends Resource
     public function getCardUri()
     {
         return $this->card_uri;
+    }
+
+    /**
+     * @param $card_uri
+     * @return mixed
+     */
+    public function setCardUri($card_uri)
+    {
+        return $this->card_uri = $card_uri;
     }
 
     /**

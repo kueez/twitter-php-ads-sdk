@@ -15,7 +15,7 @@ class LineItemFields
     const CAMPAIGN_ID                     = 'campaign_id';
     const BID_AMOUNT_LOCAL_MICRO          = 'bid_amount_local_micro';
     const NAME                            = 'name';
-    const BID_TYPE                        = 'bid_type';
+    const BID_STRATEGY                        = 'bid_strategy';
     const AUTOMATICALLY_SELECT_BID        = 'automatically_select_bid';
     const PRODUCT_TYPE                    = 'product_type';
     const PLACEMENTS                      = 'placements';
@@ -25,9 +25,8 @@ class LineItemFields
     const START_TIME                      = 'start_time';
     const END_TIME                        = 'end_time';
     const PRIMARY_WEB_EVENT_TAG           = 'primary_web_event_tag';
-    const OPTIMIZATION                    = 'optimization';
-    const BID_UNIT                        = 'bid_unit';
-    const CHARGE_BY                       = 'charge_by';
+    const GOAL                            = 'goal';
+    const PAY_BY                          = 'pay_by';
     const ADVERTISER_DOMAIN               = 'advertiser_domain';
     const ADVERTISER_USER_ID              = 'advertiser_user_id';
     const WITH_DELETED                    = 'with_deleted';

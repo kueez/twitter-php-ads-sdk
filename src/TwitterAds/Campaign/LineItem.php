@@ -35,7 +35,7 @@ class LineItem extends Analytics
         LineItemFields::CAMPAIGN_ID,
         LineItemFields::BID_AMOUNT_LOCAL_MICRO,
         LineItemFields::NAME,
-        LineItemFields::BID_TYPE,
+        LineItemFields::BID_STRATEGY,
         LineItemFields::AUTOMATICALLY_SELECT_BID,
         LineItemFields::PRODUCT_TYPE,
         LineItemFields::PLACEMENTS,
@@ -46,9 +46,8 @@ class LineItem extends Analytics
         LineItemFields::START_TIME,
         LineItemFields::END_TIME,
         LineItemFields::PRIMARY_WEB_EVENT_TAG,
-        LineItemFields::OPTIMIZATION,
-        LineItemFields::BID_UNIT,
-        LineItemFields::CHARGE_BY,
+        LineItemFields::GOAL,
+        LineItemFields::PAY_BY,
         LineItemFields::ADVERTISER_DOMAIN,
         LineItemFields::ADVERTISER_USER_ID,
         LineItemFields::CATEGORIES,
@@ -61,8 +60,8 @@ class LineItem extends Analytics
      * @var array
      */
     protected $readOnlyProperties = [
-        LineItemFields::BID_UNIT,
-        LineItemFields::CHARGE_BY,
+        LineItemFields::GOAL,
+        LineItemFields::PAY_BY,
         LineItemFields::ADVERTISER_DOMAIN,
         LineItemFields::ADVERTISER_USER_ID,
         LineItemFields::AUTOMATICALLY_SELECT_BID
@@ -72,7 +71,7 @@ class LineItem extends Analytics
     protected $campaign_id;
     protected $bid_amount_local_micro;
     protected $name;
-    protected $bid_type;
+    protected $bid_strategy;
     protected $automatically_select_bid;
     protected $product_type;
     protected $placements;
@@ -83,9 +82,8 @@ class LineItem extends Analytics
     protected $start_time;
     protected $end_time;
     protected $primary_web_event_tag;
-    protected $optimization;
-    protected $bid_unit;
-    protected $charge_by;
+    protected $goal;
+    protected $pay_by;
     protected $advertiser_domain;
     protected $tracking_tags;
     protected $advertiser_user_id;
@@ -246,17 +244,17 @@ class LineItem extends Analytics
     /**
      * @return mixed
      */
-    public function getBidType()
+    public function getBidStrategy()
     {
-        return $this->bid_type;
+        return $this->bid_strategy;
     }
 
     /**
-     * @param mixed $bid_type
+     * @param mixed $bid_strategy
      */
-    public function setBidType($bid_type)
+    public function setBidStrategy($bid_strategy)
     {
-        $this->bid_type = $bid_type;
+        $this->bid_strategy = $bid_strategy;
     }
 
     /**
@@ -422,49 +420,33 @@ class LineItem extends Analytics
     /**
      * @return mixed
      */
-    public function getOptimization()
+    public function getGoal()
     {
-        return $this->optimization;
+        return $this->goal;
     }
 
     /**
-     * @param mixed $optimization
+     * @param mixed $goal
      */
-    public function setOptimization($optimization)
+    public function setGoal($goal)
     {
-        $this->optimization = $optimization;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getBidUnit()
-    {
-        return $this->bid_unit;
-    }
-
-    /**
-     * @param mixed $bid_unit
-     */
-    public function setBidUnit($bid_unit)
-    {
-        $this->bid_unit = $bid_unit;
+        $this->goal = $goal;
     }
 
     /**
      * @return mixed
      */
-    public function getChargeBy()
+    public function getPayBy()
     {
-        return $this->charge_by;
+        return $this->pay_by;
     }
 
     /**
-     * @param mixed $charge_by
+     * @param mixed $pay_by
      */
-    public function setChargeBy($charge_by)
+    public function setPayBy($pay_by)
     {
-        $this->charge_by = $charge_by;
+        $this->pay_by = $pay_by;
     }
 
     /**

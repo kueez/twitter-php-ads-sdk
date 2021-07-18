@@ -8,21 +8,27 @@ namespace Hborras\TwitterAdsSDK\TwitterAds;
  */
 class Enumerations
 {
-    const BID_UNIT_APP_CLICK   = 'APP_CLICK';
-    const BID_UNIT_APP_INSTALL = 'APP_INSTALL';
-    const BID_UNIT_ENGAGEMENT  = 'ENGAGEMENT';
-    const BID_UNIT_FOLLOW      = 'FOLLOW';
-    const BID_UNIT_LEAD        = 'LEAD';
-    const BID_UNIT_LINK_CLICK  = 'LINK_CLICK';
-    const BID_UNIT_VIEW        = 'VIEW';
+    const GOAL_APP_CLICK                = 'APP_CLICKS';
+    const GOAL_APP_INSTALL              = 'APP_INSTALLS';
+    const GOAL_ENGAGEMENT               = 'ENGAGEMENT';
+    const GOAL_FOLLOW                   = 'FOLLOWERS';
+    const GOAL_MAX_REACH                = 'MAX_REACH';
+    const GOAL_PREROLL                  = 'PREROLL';
+    const GOAL_PREROLL_STARTS           = 'PREROLL_STARTS';
+    const GOAL_REACH_WITH_ENGAGEMENT    = 'REACH_WITH_ENGAGEMENT';
+    const GOAL_LINK_CLICK               = 'LINK_CLICKS';
+    const GOAL_VIDEO_VIEW               = 'VIDEO_VIEW';
+    const GOAL_VIEW_3S_100PCT           = 'VIEW_3S_100PCT';
+    const GOAL_VIEW_15S                 = 'VIEW_15S';
+    const GOAL_WEBSITE_CONVERSIONS      = 'WEBSITE_CONVERSIONS';
 
-    const CHARGE_BY_APP_CLICK   = 'APP_CLICK';
-    const CHARGE_BY_APP_INSTALL = 'APP_INSTALL';
-    const CHARGE_BY_ENGAGEMENT  = 'ENGAGEMENT';
-    const CHARGE_BY_FOLLOW      = 'FOLLOW';
-    const CHARGE_BY_LEAD        = 'LEAD';
-    const CHARGE_BY_LINK_CLICK  = 'LINK_CLICK';
-    const CHARGE_BY_VIEW        = 'VIEW';
+    const PAY_BY_APP_CLICK   = 'APP_CLICK';
+    const PAY_BY_APP_INSTALL = 'APP_INSTALL';
+    const PAY_BY_ENGAGEMENT  = 'ENGAGEMENT';
+    const PAY_BY_FOLLOW      = 'FOLLOW';
+    const PAY_BY_LEAD        = 'LEAD';
+    const PAY_BY_LINK_CLICK  = 'LINK_CLICK';
+    const PAY_BY_VIEW        = 'VIEW';
 
     const OPTIMIZATIONS_DEFAULT             = 'DEFAULT';
     const OPTIMIZATIONS_WEBSITE_CONVERSIONS = 'WEBSITE_CONVERSIONS';
