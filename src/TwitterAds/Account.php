@@ -5,6 +5,7 @@ namespace Hborras\TwitterAdsSDK\TwitterAds;
 use DateTimeImmutable;
 use Hborras\TwitterAdsSDK\TwitterAds\Campaign\ActiveEntity;
 use Hborras\TwitterAdsSDK\TwitterAds\Campaign\Tweet;
+use Hborras\TwitterAdsSDK\TwitterAds\Creative\Card;
 use Hborras\TwitterAdsSDK\TwitterAds\Creative\Media;
 use Hborras\TwitterAdsSDK\TwitterAds\Creative\PromotedTweet;
 use Hborras\TwitterAdsSDK\TwitterAds\Creative\WebsiteCard;
@@ -256,6 +257,28 @@ class Account extends Analytics
     {
         $websiteCardClass = new WebsiteCard();
         return $websiteCardClass->loadResource($id, $params);
+    }
+
+    /**
+     * Returns a collection of cards available to the current account.
+     *
+     * @param string $id
+     * @param array $params
+     * @return WebsiteCard|Cursor
+     * @throws BadRequest
+     * @throws Errors\Forbidden
+     * @throws Errors\NotAuthorized
+     * @throws Errors\NotFound
+     * @throws Errors\RateLimit
+     * @throws Errors\ServerError
+     * @throws Errors\ServiceUnavailable
+     * @throws TwitterAdsException
+     */
+    public function getCards($id = '', $params = [])
+    {
+        $cardClass = new Card();
+        $params['include_legacy_cards'] = 'true';
+        return $cardClass->loadResource($id, $params);
     }
 
     /**
