@@ -36,7 +36,6 @@ class LineItem extends Analytics
         LineItemFields::BID_AMOUNT_LOCAL_MICRO,
         LineItemFields::NAME,
         LineItemFields::BID_STRATEGY,
-        LineItemFields::AUTOMATICALLY_SELECT_BID,
         LineItemFields::PRODUCT_TYPE,
         LineItemFields::PLACEMENTS,
         LineItemFields::OBJECTIVE,
@@ -64,7 +63,6 @@ class LineItem extends Analytics
         LineItemFields::PAY_BY,
         LineItemFields::ADVERTISER_DOMAIN,
         LineItemFields::ADVERTISER_USER_ID,
-        LineItemFields::AUTOMATICALLY_SELECT_BID
     ];
 
     /** Writable */
@@ -72,7 +70,6 @@ class LineItem extends Analytics
     protected $bid_amount_local_micro;
     protected $name;
     protected $bid_strategy;
-    protected $automatically_select_bid;
     protected $product_type;
     protected $placements;
     protected $objective;
@@ -85,7 +82,6 @@ class LineItem extends Analytics
     protected $goal;
     protected $pay_by;
     protected $advertiser_domain;
-    protected $tracking_tags;
     protected $advertiser_user_id;
     protected $categories;
 
@@ -255,22 +251,6 @@ class LineItem extends Analytics
     public function setBidStrategy($bid_strategy)
     {
         $this->bid_strategy = $bid_strategy;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getAutomaticallySelectdBid()
-    {
-        return $this->automatically_select_bid;
-    }
-
-    /**
-     * @param mixed $automatically_select_bid
-     */
-    public function setAutomaticallySelectBid($automatically_select_bid)
-    {
-        $this->automatically_select_bid = $automatically_select_bid;
     }
 
     /**
@@ -468,22 +448,6 @@ class LineItem extends Analytics
     /**
      * @return mixed
      */
-    public function getTrackingTags()
-    {
-        return $this->tracking_tags;
-    }
-
-    /**
-     * @param mixed $tracking_tags
-     */
-    public function setTrackingTags($tracking_tags)
-    {
-        $this->tracking_tags = $tracking_tags;
-    }
-
-    /**
-     * @return mixed
-     */
     public function getAdvertiserUserId()
     {
         return $this->advertiser_user_id;
@@ -503,14 +467,6 @@ class LineItem extends Analytics
     public function getTargetCpaLocalMicro()
     {
         return $this->target_cpa_local_micro;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getAutomaticallySelectBid()
-    {
-        return $this->automatically_select_bid;
     }
 
     /**

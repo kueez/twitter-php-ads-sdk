@@ -16,7 +16,6 @@ class LineItemFields
     const BID_AMOUNT_LOCAL_MICRO          = 'bid_amount_local_micro';
     const NAME                            = 'name';
     const BID_STRATEGY                        = 'bid_strategy';
-    const AUTOMATICALLY_SELECT_BID        = 'automatically_select_bid';
     const PRODUCT_TYPE                    = 'product_type';
     const PLACEMENTS                      = 'placements';
     const OBJECTIVE                       = 'objective';
@@ -37,7 +36,6 @@ class LineItemFields
     const TARGET_CPA_LOCAL_MICRO          = 'target_cpa_local_micro';
     const CATEGORIES                      = 'categories';
     const CURRENCY                        = 'currency';
-    const TRACKING_TAGS                   = 'tracking_tags';
     const LOOKALIKE_EXPANSION             = 'lookalike_expansion';
     const WITH_DRAFT                      = 'with_draft';
 

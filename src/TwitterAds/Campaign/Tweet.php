@@ -39,6 +39,7 @@ class Tweet extends Resource
 
     protected $properties = [
         TweetFields::ID,
+        TweetFields::NAME,
         TweetFields::CARD_URI,
         TweetFields::TWEET_TYPE,
         TweetFields::FULL_TEXT,
@@ -49,6 +50,7 @@ class Tweet extends Resource
     ];
 
     /** Writable */
+    protected $name;
     protected $card_uri;
     protected $full_text;
     protected $lang;
@@ -122,5 +124,21 @@ class Tweet extends Resource
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param mixed $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
     }
 }
