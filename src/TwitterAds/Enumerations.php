@@ -30,6 +30,7 @@ class Enumerations
     const PAY_BY_LEAD        = 'LEAD';
     const PAY_BY_LINK_CLICK  = 'LINK_CLICK';
     const PAY_BY_VIEW        = 'VIEW';
+    const PAY_BY_IMPRESSION  = 'IMPRESSION';
 
     const OPTIMIZATIONS_DEFAULT             = 'DEFAULT';
     const OPTIMIZATIONS_WEBSITE_CONVERSIONS = 'WEBSITE_CONVERSIONS';
