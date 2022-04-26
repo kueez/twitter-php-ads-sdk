@@ -178,4 +178,12 @@ class WebEventTag extends Resource
     {
         $this->retargeting_enabled = $retargeting_enabled;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getWebsiteTagId()
+    {
+        return $this->website_tag_id;
+    }
 }
