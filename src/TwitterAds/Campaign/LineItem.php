@@ -59,8 +59,8 @@ class LineItem extends Analytics
      * @var array
      */
     protected $readOnlyProperties = [
-        LineItemFields::GOAL,
-        LineItemFields::PAY_BY,
+//        LineItemFields::GOAL,
+//        LineItemFields::PAY_BY,
         LineItemFields::ADVERTISER_DOMAIN,
         LineItemFields::ADVERTISER_USER_ID,
     ];

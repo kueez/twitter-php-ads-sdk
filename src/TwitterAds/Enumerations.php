@@ -21,6 +21,7 @@ class Enumerations
     const GOAL_VIEW_3S_100PCT           = 'VIEW_3S_100PCT';
     const GOAL_VIEW_15S                 = 'VIEW_15S';
     const GOAL_WEBSITE_CONVERSIONS      = 'WEBSITE_CONVERSIONS';
+    const GOAL_SITE_VISIT               = 'SITE_VISITS';
 
     const PAY_BY_APP_CLICK   = 'APP_CLICK';
     const PAY_BY_APP_INSTALL = 'APP_INSTALL';
@@ -29,6 +30,7 @@ class Enumerations
     const PAY_BY_LEAD        = 'LEAD';
     const PAY_BY_LINK_CLICK  = 'LINK_CLICK';
     const PAY_BY_VIEW        = 'VIEW';
+    const PAY_BY_IMPRESSION  = 'IMPRESSION';
 
     const OPTIMIZATIONS_DEFAULT             = 'DEFAULT';
     const OPTIMIZATIONS_WEBSITE_CONVERSIONS = 'WEBSITE_CONVERSIONS';
