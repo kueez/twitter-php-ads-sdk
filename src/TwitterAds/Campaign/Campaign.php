@@ -36,6 +36,7 @@ class Campaign extends Analytics
         CampaignFields::END_TIME,
         CampaignFields::ENTITY_STATUS,
         CampaignFields::STANDARD_DELIVERY,
+        CampaignFields::BUDGET_OPTIMIZATION,
         CampaignFields::DAILY_BUDGET_AMOUNT_LOCAL_MICRO,
         CampaignFields::TOTAL_BUDGET_AMOUNT_LOCAL_MICRO,
         CampaignFields::DURATION_IN_DAYS,
@@ -56,6 +57,7 @@ class Campaign extends Analytics
     protected $total_budget_amount_local_micro;
     protected $duration_in_days;
     protected $frequency_cap;
+    protected $budget_optimization;
 
     /**
      * @param array $params
@@ -254,6 +256,22 @@ class Campaign extends Analytics
     public function setStandardDelivery($standard_delivery)
     {
         $this->standard_delivery = $standard_delivery;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBudgetOptimization()
+    {
+        return $this->budget_optimization;
+    }
+
+    /**
+     * @param mixed $budget_optimization
+     */
+    public function setBudgetOptimization($budget_optimization)
+    {
+        $this->budget_optimization = $budget_optimization;
     }
 
     /**
