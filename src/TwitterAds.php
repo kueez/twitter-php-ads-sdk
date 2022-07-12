@@ -817,6 +817,17 @@ class TwitterAds extends Config
     }
 
     /**
+     * @return string|null
+     */
+    public function getAccountApprovalStatus()
+    {
+        if(!$this->account instanceof Account){
+            return null;
+        }
+        return $this->account->getApprovalStatus();
+    }
+
+    /**
      * @param Account $account
      */
     public function setAccount($account)
