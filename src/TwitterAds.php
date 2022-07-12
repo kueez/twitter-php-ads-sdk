@@ -26,6 +26,7 @@ class TwitterAds extends Config
     const API_HOST = 'https://ads-api.twitter.com';
     const API_HOST_SANDBOX = 'https://ads-api-sandbox.twitter.com';
     const API_HOST_OAUTH = 'https://api.twitter.com';
+    const ROOT_API_HOST = 'https://api.twitter.com';
     const UPLOAD_HOST = 'https://upload.twitter.com';
     const UPLOAD_PATH = 'media/upload.json';
     const UPLOAD_CHUNK = 40960; // 1024 * 40
@@ -335,6 +336,26 @@ class TwitterAds extends Config
     }
 
     /**
+     * @param $userId
+     * @param array $parameters
+     * @return array
+     * @throws BadRequest
+     * @throws Forbidden
+     * @throws NotAuthorized
+     * @throws NotFound
+     * @throws RateLimit
+     * @throws ServerError
+     * @throws ServiceUnavailable
+     * @throws TwitterAdsException
+     */
+    public function getUser($userId, array $parameters = [])
+    {
+        $parameters['user_id'] = $userId;
+
+        return (array) $this->http('GET', self::ROOT_API_HOST, 'users/lookup.json', $parameters)->getBody()[0];
+    }
+
+    /**
      * Upload media to upload.twitter.com.
      *
      * @param array $parameters
@@ -516,7 +537,7 @@ class TwitterAds extends Config
         $this->resetLastResponse();
         if (strpos($path, TONUpload::DEFAULT_DOMAIN) === 0) {
             $url = $path;
-        } elseif ($host == self::UPLOAD_HOST) {
+        } elseif ($host == self::UPLOAD_HOST || $host == self::ROOT_API_HOST) {
             $url = sprintf('%s/%s/%s', $host, self::API_REST_VERSION, $path);
         } else {
             $url = sprintf('%s/%s/%s', $host, self::API_VERSION, $path);
