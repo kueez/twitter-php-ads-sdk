@@ -11,6 +11,7 @@ use Hborras\TwitterAdsSDK\TwitterAds\Creative\PromotedTweet;
 use Hborras\TwitterAdsSDK\TwitterAds\Creative\WebsiteCard;
 use Hborras\TwitterAdsSDK\TwitterAds\Errors\BadRequest;
 use Hborras\TwitterAdsSDK\TwitterAds\Measurement\WebEventTag;
+use Hborras\TwitterAdsSDK\TwitterAds\Measurement\WebsiteTag;
 use Hborras\TwitterAdsSDK\TwitterAdsException;
 use Hborras\TwitterAdsSDK\TwitterAds\Analytics\Job;
 //use Hborras\TwitterAdsSDK\TwitterAds\Creative\Video;
@@ -299,6 +300,26 @@ class Account extends Analytics
     {
         $websiteCardClass = new WebEventTag();
         return $websiteCardClass->loadResource($id, $params);
+    }
+    /**
+     * Returns a collection of web event tags available to the current account.
+     *
+     * @param string $id
+     * @param array $params
+     * @return WebsiteTag|Cursor
+     * @throws BadRequest
+     * @throws Errors\Forbidden
+     * @throws Errors\NotAuthorized
+     * @throws Errors\NotFound
+     * @throws Errors\RateLimit
+     * @throws Errors\ServerError
+     * @throws Errors\ServiceUnavailable
+     * @throws TwitterAdsException
+     */
+    public function getWebsiteTags($id = '', $params = [])
+    {
+        $websiteTagClass = new WebsiteTag();
+        return $websiteTagClass->loadResource($id, $params);
     }
 
     /**
