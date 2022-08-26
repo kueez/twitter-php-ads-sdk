@@ -93,9 +93,8 @@ class Tweet extends Resource
      * @param Account $account
      * @param $text
      * @param array $params
-     *
+     * @param bool $paramsInQs
      * @return mixed
-     * @throws TwitterAdsException
      * @throws BadRequest
      * @throws Forbidden
      * @throws NotAuthorized
@@ -103,8 +102,9 @@ class Tweet extends Resource
      * @throws RateLimit
      * @throws ServerError
      * @throws ServiceUnavailable
+     * @throws TwitterAdsException
      */
-    public static function create(Account $account, $text, $params = [])
+    public static function create(Account $account, $text, $params = [], $paramsInQs = false)
     {
         $params[TweetFields::TEXT] = $text;
 
@@ -113,7 +113,7 @@ class Tweet extends Resource
         }
 
         $resource = str_replace(Resource::RESOURCE_REPLACE, $account->getId(), self::TWEET_CREATE);
-        $response = $account->getTwitterAds()->post($resource, $params);
+        $response = $account->getTwitterAds()->post($resource, $params, [], $paramsInQs);
 
         return $response->getBody()->data;
     }

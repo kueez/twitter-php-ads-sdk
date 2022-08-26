@@ -275,8 +275,8 @@ class TwitterAds extends Config
      *
      * @param string $path
      * @param array $parameters
-     *
      * @param array $headers
+     * @param boolean $paramsInQs
      * @return Response
      * @throws BadRequest
      * @throws Forbidden
@@ -287,9 +287,9 @@ class TwitterAds extends Config
      * @throws ServiceUnavailable
      * @throws TwitterAdsException
      */
-    public function post($path, array $parameters = [], array $headers = [])
+    public function post($path, array $parameters = [], array $headers = [], $paramsInQs = false)
     {
-        return $this->http('POST', !$this->sandbox ? self::API_HOST : self::API_HOST_SANDBOX, $path, $parameters, $headers);
+        return $this->http('POST', !$this->sandbox ? self::API_HOST : self::API_HOST_SANDBOX, $path, $parameters, $headers, $paramsInQs);
     }
 
     /**
@@ -520,6 +520,7 @@ class TwitterAds extends Config
      * @param string $path
      * @param array $parameters
      * @param array $headers
+     * @param boolean $paramsInQs
      * @return Response
      * @throws BadRequest
      * @throws Forbidden
@@ -530,7 +531,7 @@ class TwitterAds extends Config
      * @throws ServiceUnavailable
      * @throws TwitterAdsException
      */
-    private function http($method, $host, $path, array $parameters, $headers = [])
+    private function http($method, $host, $path, array $parameters, $headers = [], $paramsInQs = false)
     {
         $this->method = $method;
         $this->resource = $path;
@@ -544,7 +545,7 @@ class TwitterAds extends Config
         }
 
         $this->response->setApiPath($path);
-        $result = $this->oAuthRequest($url, $method, $parameters, $headers);
+        $result = $this->oAuthRequest($url, $method, $parameters, $headers, $paramsInQs);
         $response = JsonDecoder::decode($result, $this->decodeJsonAsArray);
         $this->response->setBody($response);
         if ($this->getLastHttpCode() > 399) {
@@ -598,12 +599,12 @@ class TwitterAds extends Config
      * @param string $url
      * @param string $method
      * @param array $parameters
-     *
      * @param array $headers
+     * @param boolean $paramsInQs
      * @return string
      * @throws TwitterAdsException
      */
-    private function oAuthRequest($url, $method, array $parameters, $headers = [])
+    private function oAuthRequest($url, $method, array $parameters, $headers = [], $paramsInQs = false)
     {
         $request = Request::fromConsumerAndToken($this->consumer, $this->token, $method, $url, $parameters);
         if (array_key_exists('oauth_callback', $parameters)) {
@@ -620,7 +621,7 @@ class TwitterAds extends Config
             return $this->request($url, $method, $authorization, $parameters, $headers);
         }
 
-        return $this->request($request->getNormalizedHttpUrl(), $method, $authorization, $parameters, $headers);
+        return $this->request($request->getNormalizedHttpUrl(), $method, $authorization, $parameters, $headers, $paramsInQs);
     }
 
     /**
@@ -630,12 +631,12 @@ class TwitterAds extends Config
      * @param string $method
      * @param string $authorization
      * @param array $postfields
-     *
      * @param array $headers
+     * @param boolean $paramsInQs
      * @return string
      * @throws TwitterAdsException
      */
-    private function request($url, $method, $authorization, $postfields, $headers = [])
+    private function request($url, $method, $authorization, $postfields, $headers = [], $paramsInQs = false)
     {
         /* Curl settings */
         $options = [
@@ -673,7 +674,11 @@ class TwitterAds extends Config
                         'Content-Length: '. strlen($postfields['raw'])
                     ]);
                 } else {
-                    $options[CURLOPT_POSTFIELDS] = Util::buildHttpQuery($postfields);
+                    if ($paramsInQs) {
+                        $options[CURLOPT_URL] .= '?' . Util::buildHttpQuery($postfields);
+                    } else {
+                        $options[CURLOPT_POSTFIELDS] = Util::buildHttpQuery($postfields);
+                    }
                 }
 
                 break;
