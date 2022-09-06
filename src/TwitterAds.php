@@ -633,10 +633,11 @@ class TwitterAds extends Config
      * @param array $postfields
      * @param array $headers
      * @param boolean $paramsInQs
+     * @param integer $retries
      * @return string
      * @throws TwitterAdsException
      */
-    private function request($url, $method, $authorization, $postfields, $headers = [], $paramsInQs = false)
+    private function request($url, $method, $authorization, $postfields, $headers = [], $paramsInQs = false, $retries = 0)
     {
         /* Curl settings */
         $options = [
@@ -702,7 +703,14 @@ class TwitterAds extends Config
         $response = curl_exec($curlHandle);
         // Throw exceptions on cURL errors.
         if (curl_errno($curlHandle) > 0) {
-            throw new TwitterAdsException(curl_error($curlHandle), curl_errno($curlHandle), null, null);
+            $curlError = curl_error($curlHandle);
+
+            if ($retries < 5 && (strpos($curlError, 'Could not resolve') !== false || strpos($curlError, 'Resolving timed out') !== false)) {
+                usleep(500000);
+                return $this->request($url, $method, $authorization, $postfields, $headers, $paramsInQs, $retries+1);
+            }
+
+            throw new TwitterAdsException($curlError, curl_errno($curlHandle), null, null);
         }
         $this->response->setHttpCode(curl_getinfo($curlHandle, CURLINFO_HTTP_CODE));
         $parts = explode("\r\n\r\n", $response);
