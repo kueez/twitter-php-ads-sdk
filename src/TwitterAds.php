@@ -706,7 +706,7 @@ class TwitterAds extends Config
             $curlError = curl_error($curlHandle);
 
             if ($retries < 5 && (strpos($curlError, 'Could not resolve') !== false || strpos($curlError, 'Resolving timed out') !== false)) {
-                usleep(500000);
+                usleep(1000000);
                 return $this->request($url, $method, $authorization, $postfields, $headers, $paramsInQs, $retries+1);
             }
 
