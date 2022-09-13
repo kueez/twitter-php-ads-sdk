@@ -4,6 +4,7 @@ namespace Hborras\TwitterAdsSDK\TwitterAds;
 
 use Exception;
 use DateTimeInterface;
+use Hborras\TwitterAdsSDK\TwitterAds\Creative\Card;
 use InvalidArgumentException;
 use Hborras\TwitterAdsSDK\Arrayable;
 use Hborras\TwitterAdsSDK\TwitterAds;
@@ -218,10 +219,14 @@ abstract class Resource implements Arrayable
             if ($this->$property instanceof DateTimeInterface) {
                 $params[$property] = $this->$property->format('c');
             } elseif (is_array($this->$property)) {
-                $params[$property] = implode(',', $this->$property);
+                if ($property == 'components' || $property == 'slides') {
+                    $params[$property] = $this->$property;
+                } else {
+                    $params[$property] = implode(',', $this->$property);
 
-                if (is_null($params[$property]) || $params[$property] === "") {
-                    unset($params[$property]);
+                    if (is_null($params[$property]) || $params[$property] === "") {
+                        unset($params[$property]);
+                    }
                 }
             } elseif (is_bool($this->$property)) {
                 $params[$property] = $this->$property ? 'true' : 'false';
@@ -296,7 +301,7 @@ abstract class Resource implements Arrayable
             $response = $this->getTwitterAds()->put($resource, $this->toParams(true));
         } else {
             $resource = str_replace(static::RESOURCE_REPLACE, $this->getTwitterAds()->getAccountId(), static::RESOURCE_COLLECTION);
-            $response = $this->getTwitterAds()->post($resource, $this->toParams(true));
+            $response = $this->getTwitterAds()->post($resource, $this instanceof Card ? ['raw' => json_encode($this->toParams(true))] : $this->toParams(true));
         }
 
         return $this->fromResponse($response->getBody()->data);

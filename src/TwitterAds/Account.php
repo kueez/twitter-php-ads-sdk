@@ -276,7 +276,8 @@ class Account extends Analytics
      * @throws TwitterAdsException
      */
     public function getCards($id = '', $params = [])
-    {$cardClass = new Card();
+    {
+        $cardClass = new Card();
         $params['include_legacy_cards'] = 'true';
         return $cardClass->loadResource($id, $params);
     }

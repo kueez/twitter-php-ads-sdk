@@ -104,9 +104,10 @@ class Tweet extends Resource
      * @throws ServiceUnavailable
      * @throws TwitterAdsException
      */
-    public static function create(Account $account, $text, $params = [], $paramsInQs = false)
+    public static function create(Account $account, $name, $text, $params = [], $paramsInQs = false)
     {
         $params[TweetFields::TEXT] = $text;
+        $params[TweetFields::NAME] = $name;
 
         if (isset($params[TweetFields::MEDIA_IDS]) && is_array($params[TweetFields::MEDIA_IDS])) {
             $params[TweetFields::MEDIA_IDS] = implode(',', $params[TweetFields::MEDIA_IDS]);

@@ -2,8 +2,8 @@
 
 namespace Hborras\TwitterAdsSDK\TwitterAds\Creative;
 
+use Hborras\TwitterAdsSDK\TwitterAds\Fields\CardFields;
 use Hborras\TwitterAdsSDK\TwitterAds\Resource;
-use Hborras\TwitterAdsSDK\TwitterAds\Fields\WebsiteCardFields;
 
 /**
  * Class Card
@@ -12,7 +12,7 @@ use Hborras\TwitterAdsSDK\TwitterAds\Fields\WebsiteCardFields;
 class Card extends Resource
 {
     const RESOURCE_COLLECTION = 'accounts/{account_id}/cards';
-    const RESOURCE            = 'accounts/{account_id}/cards/{card_di}';
+    const RESOURCE            = 'accounts/{account_id}/cards/{card_id}';
     const RESOURCE_ID_REPLACE = '{card_uri}';
 
     /** Read Only */
@@ -22,15 +22,29 @@ class Card extends Resource
     protected $deleted;
 
     protected $properties = [
-        WebsiteCardFields::CARD_URI,
-        WebsiteCardFields::NAME,
-        WebsiteCardFields::CREATED_AT,
-        WebsiteCardFields::UPDATED_AT,
-        WebsiteCardFields::DELETED,
+        CardFields::CARD_URI,
+        CardFields::NAME,
+        CardFields::TYPE,
+        CardFields::CREATED_AT,
+        CardFields::UPDATED_AT,
+        CardFields::DELETED,
+        CardFields::COMPONENTS,
+        CardFields::SLIDES,
     ];
 
     /** Writable */
     protected $name;
+    protected $type;
+    protected $components;
+    protected $slides;
+
+    /**
+     * @param array $properties
+     */
+    public function setProperties($properties)
+    {
+        $this->properties = $properties;
+    }
 
     /**
      * @return mixed
@@ -49,11 +63,19 @@ class Card extends Resource
     }
 
     /**
-     * @param array $properties
+     * @return mixed
      */
-    public function setProperties($properties)
+    public function getType()
     {
-        $this->properties = $properties;
+        return $this->type;
+    }
+
+    /**
+     * @param mixed $type
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
     }
 
     /**
@@ -70,6 +92,38 @@ class Card extends Resource
     public function setName($name)
     {
         $this->name = $name;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getComponents()
+    {
+        return $this->components;
+    }
+
+    /**
+     * @param mixed $components
+     */
+    public function setComponents($components)
+    {
+        $this->components = $components;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSlides()
+    {
+        return $this->slides;
+    }
+
+    /**
+     * @param mixed $slides
+     */
+    public function setSlides($slides)
+    {
+        $this->slides = $slides;
     }
 
     /**
