@@ -30,6 +30,14 @@ class FundingInstrument extends Analytics
     protected $updated_at;
     protected $deleted;
 
+    protected $io_header;
+    protected $able_to_fund;
+    protected $reasons_not_able_to_fund;
+    protected $credit_remaining_local_micro;
+    protected $entity_status;
+    protected $start_time;
+    protected $end_time;
+
     /**
      * @param $metricGroups
      * @param array $params
@@ -136,5 +144,61 @@ class FundingInstrument extends Analytics
     public function getDeleted()
     {
         return $this->deleted;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIoHeader()
+    {
+        return $this->io_header;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAbleToFund()
+    {
+        return $this->able_to_fund;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getReasonsNotAbleToFund()
+    {
+        return $this->reasons_not_able_to_fund;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCreditRemainingLocalMicro()
+    {
+        return $this->credit_remaining_local_micro;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEntityStatus()
+    {
+        return $this->entity_status;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStartTime()
+    {
+        return $this->start_time;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEndTime()
+    {
+        return $this->end_time;
     }
 }
