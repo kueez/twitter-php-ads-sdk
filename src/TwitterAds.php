@@ -356,6 +356,23 @@ class TwitterAds extends Config
     }
 
     /**
+     * @param array $parameters
+     * @return array
+     * @throws BadRequest
+     * @throws Forbidden
+     * @throws NotAuthorized
+     * @throws NotFound
+     * @throws RateLimit
+     * @throws ServerError
+     * @throws ServiceUnavailable
+     * @throws TwitterAdsException
+     */
+    public function updateStatus(array $parameters = [])
+    {
+        return (array) $this->http('POST', self::ROOT_API_HOST, 'statuses/update.json', $parameters)->getBody()[0];
+    }
+
+    /**
      * Upload media to upload.twitter.com.
      *
      * @param array $parameters
