@@ -369,7 +369,7 @@ class TwitterAds extends Config
      */
     public function updateStatus(array $parameters = [])
     {
-        return (array) $this->http('POST', self::ROOT_API_HOST, 'statuses/update.json', $parameters)->getBody()[0];
+        return (array) $this->http('POST', self::ROOT_API_HOST, 'statuses/update.json', $parameters)->getBody();
     }
 
     /**
